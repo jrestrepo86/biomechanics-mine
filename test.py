@@ -1,43 +1,6 @@
-# Mutual Information Between Joint Angles and Toe Height in Healthy Subjects
-
-#### biomechanics-mine
-
-Mutual information neural estimation (MINE) code used for the article:
-
-```
-@article{restrepo2023,
-  title={Mutual Information Between Joint Angles and Toe Height in Healthy Subjects},
-  author={Juan F. Restrepo, Mauricio. Riveras,Gastón Schlotthauer,Paola Catalfamo},
-  journal={},
-  pages={},
-  year={},
-}
-```
-
-## Install
-
-```bash
-git clone https://github.com/jrestrepo86/biomechanics-mine.git
-cd biomechanics-mine/
-pip install -e .
-```
-
-## Uninstall
-
-```bash
-cd biomechanics-mine/
-pip uninstall -e mine
-```
-
-## Usage
-
-[A complete test of this module can be found here](testMine.py)
-
-### Usage example:
-
-```py
 import numpy as np
 from matplotlib import pyplot as plt
+
 try:
     from mine.mine import Mine
 except ImportError:
@@ -71,7 +34,7 @@ train_params = {
 }
 # Generate model
 model = Mine(X, Y, **model_params)
-# Train model
+# Train models
 model.fit(**train_params)
 # Get mi estimation
 mi = model.get_mi()
@@ -93,26 +56,3 @@ fig.suptitle(
     fontsize=13,
 )
 plt.show()
-```
-
-## Bibliography
-
-```
-@inproceedings{belghazi2018mutual,
-  title={Mutual information neural estimation},
-  author={Belghazi, Mohamed Ishmael and Baratin, Aristide and Rajeshwar,
-          Sai and Ozair, Sherjil and Bengio, Yoshua and Courville, Aaron and Hjelm, Devon},
-  booktitle={International conference on machine learning},
-  pages={531--540},
-  year={2018},
-  organization={PMLR}
-}
-inproceedings{choi2022combating, 
-    title={Combating the instability of mutual information-based losses via regularization},
-    author={Choi, Kwanghee and Lee, Siyeong}, 
-    booktitle={Uncertainty in Artificial Intelligence},
-    pages={411--421},
-    year={2022},
-    organization={PMLR}
-}
-```

@@ -5,7 +5,10 @@ import numpy as np
 from matplotlib import pyplot as plt
 from tqdm import tqdm
 
-from mine.mine import Mine
+try:
+    from mine.mine import Mine
+except ImportError:
+    from .mine.mine import Mine
 
 
 def plot(ax, Rho, teo_mi, mi, label):
@@ -22,7 +25,7 @@ def testMine():
     loss3 = "remine"
     model_params = {"hidden_dim": 50, "num_hidden_layers": 3, "afn": "elu"}
 
-    N = 3000
+    N = 5000
     mu = np.array([0, 0])
     Rho = np.linspace(-0.99, 0.99, 21)
     mi_teo = np.zeros(*Rho.shape)
