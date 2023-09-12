@@ -7,7 +7,7 @@ Mutual information neural estimation (MINE) code used for the article:
 ```
 @article{restrepo2023,
   title={Mutual Information Between Joint Angles and Toe Height in Healthy Subjects},
-  author={Juan F. Restrepo, Mauricio. Riveras,Gastón Schlotthauer,Paola Catalfamo},
+  author={Juan F. Restrepo, Mauricio Riveras,Gastón Schlotthauer,Paola Catalfamo},
   journal={},
   pages={},
   year={},
