@@ -1,7 +1,18 @@
-# biomechanics-mine
+# Mutual Information Between Joint Angles and Toe Height in Healthy Subjects
 
-Mutual information neural estimation (MINE) code used for the article "Mutual
-Information Between Joint Angles and Toe Height in Healthy Subjects"
+#### biomechanics-mine
+
+Mutual information neural estimation (MINE) code used for the article:
+
+```
+@inproceedings{belghazi2018mutual,
+  title={Mutual Information Between Joint Angles and Toe Height in Healthy Subjects},
+  author={Juan F. Restrepo, Mauricio. Riveras,Gastón Schlotthauer,Paola Catalfamo},
+  journal={},
+  pages={},
+  year={},
+}
+```
 
 ## Install
 
@@ -13,7 +24,7 @@ pip install -e .
 
 ## Usage
 
-([A Complete Test of this module can be found here](testMine.py)
+[A Complete Test of this module can be found here](testMine.py)
 
 ### Usage example:
 
