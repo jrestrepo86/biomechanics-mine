@@ -9,7 +9,7 @@ except ImportError:
 # Generate Gaussian Data
 rho = 0.5
 mu = np.array([0, 0])
-nDataPoints = 5000
+nDataPoints = 10000
 cov_matrix = np.array([[1, rho], [rho, 1]])
 joint_samples_train = np.random.multivariate_normal(
     mean=mu, cov=cov_matrix, size=(nDataPoints, 1)
@@ -20,7 +20,7 @@ Y = np.squeeze(joint_samples_train[:, :, 1])
 mi_teo = -0.5 * np.log(1 - rho**2)  # Theoretical MI Value
 
 # Mine
-model_params = {"hidden_dim": 50, "num_hidden_layers": 3, "afn": "elu", "loss": "mine"}
+model_params = {"hidden_dim": 150, "num_hidden_layers": 3, "afn": "elu", "loss": "mine"}
 train_params = {
     "batch_size": "full",
     "max_epochs": 5000,
@@ -48,6 +48,7 @@ axs[0].set_ylabel("Loss")
 axs[0].legend()
 axs[1].plot(val_mi, "b", label="Validation MI")
 axs[1].plot(test_mi, "r", label="Test MI")
+axs[1].hlines(mi_teo, 0, test_mi.size, "k", linestyles="dashed", label="True MI")
 axs[1].set_xlabel("epochs")
 axs[1].set_ylabel("MI")
 axs[1].legend()

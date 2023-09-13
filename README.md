@@ -5,9 +5,9 @@
 Mutual information neural estimation (MINE) code used for the article:
 
 ```
-@article{restrepo2023,
+@article{restrepo_mi_bomechanics2023,
   title={Mutual Information Between Joint Angles and Toe Height in Healthy Subjects},
-  author={Juan F. Restrepo, Mauricio Riveras,Gastón Schlotthauer,Paola Catalfamo},
+  author={Juan F. Restrepo, Mauricio Riveras, Gastón Schlotthauer, Paola Catalfamo},
   journal={},
   pages={},
   year={},
@@ -25,8 +25,7 @@ pip install -e .
 ## Uninstall
 
 ```bash
-cd biomechanics-mine/
-pip uninstall -e mine
+pip uninstall mine
 ```
 
 ## Usage
@@ -38,6 +37,7 @@ pip uninstall -e mine
 ```py
 import numpy as np
 from matplotlib import pyplot as plt
+
 try:
     from mine.mine import Mine
 except ImportError:
@@ -46,7 +46,7 @@ except ImportError:
 # Generate Gaussian Data
 rho = 0.5
 mu = np.array([0, 0])
-nDataPoints = 5000
+nDataPoints = 10000
 cov_matrix = np.array([[1, rho], [rho, 1]])
 joint_samples_train = np.random.multivariate_normal(
     mean=mu, cov=cov_matrix, size=(nDataPoints, 1)
@@ -57,7 +57,7 @@ Y = np.squeeze(joint_samples_train[:, :, 1])
 mi_teo = -0.5 * np.log(1 - rho**2)  # Theoretical MI Value
 
 # Mine
-model_params = {"hidden_dim": 50, "num_hidden_layers": 3, "afn": "elu", "loss": "mine"}
+model_params = {"hidden_dim": 150, "num_hidden_layers": 3, "afn": "elu", "loss": "mine"}
 train_params = {
     "batch_size": "full",
     "max_epochs": 5000,
@@ -71,7 +71,7 @@ train_params = {
 }
 # Generate model
 model = Mine(X, Y, **model_params)
-# Train model
+# Train models
 model.fit(**train_params)
 # Get mi estimation
 mi = model.get_mi()
@@ -85,6 +85,7 @@ axs[0].set_ylabel("Loss")
 axs[0].legend()
 axs[1].plot(val_mi, "b", label="Validation MI")
 axs[1].plot(test_mi, "r", label="Test MI")
+axs[1].hlines(mi_teo, 0, test_mi.size, "k", linestyles="dashed", label="True MI")
 axs[1].set_xlabel("epochs")
 axs[1].set_ylabel("MI")
 axs[1].legend()
@@ -107,12 +108,27 @@ plt.show()
   year={2018},
   organization={PMLR}
 }
-inproceedings{choi2022combating, 
+@article{choi2020regularized,
+  title={Regularized mutual information neural estimation},
+  author={Choi, Kwanghee and Lee, Siyeong},
+  year={2020}
+}
+@inproceedings{choi2022combating, 
     title={Combating the instability of mutual information-based losses via regularization},
     author={Choi, Kwanghee and Lee, Siyeong}, 
     booktitle={Uncertainty in Artificial Intelligence},
     pages={411--421},
     year={2022},
     organization={PMLR}
+}
+@inproceedings{cristiani2020leakage,
+  title={Leakage assessment through neural estimation of the mutual information},
+  author={Cristiani, Valence and Lecomte, Maxime and Maurine, Philippe},
+  booktitle={Applied Cryptography and Network Security Workshops: ACNS 2020 Satellite Workshops, 
+            AIBlock, AIHWS, AIoTS, Cloud S\&P, SCI, SecMT, and SiMLA, Rome, 
+            Italy, October 19--22, 2020, Proceedings 18},
+  pages={144--162},
+  year={2020},
+  organization={Springer}
 }
 ```
