@@ -57,7 +57,7 @@ pip uninstall mine
 - [A complete test of this module using Gaussian random variables](testMineGaussian.py)
 - [A complete test of this module using gait signals](testMineGait.py)
 
-##### Fast test for using Gaussian random variables:
+##### Fast test using Gaussian random variables:
 
 ```py
 import numpy as np

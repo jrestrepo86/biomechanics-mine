@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import time
 
 import numpy as np
@@ -19,14 +16,11 @@ except ImportError:
 sns.set_theme(style="ticks", palette="tab10", context="paper")
 palette = sns.color_palette("Paired")
 
-
 CYCLE = "Swing"
 NREA = 10  # number of mine realizations
 
-
-# paralelization ray
-
 # ----------------------------------------------------------------------------
+# paralelization ray
 run_torch_on = "cuda"  # run on gpu
 # run_torch_on = "cpu"  # run on cpu
 ray.init(num_cpus=8)
