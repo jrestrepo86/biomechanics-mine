@@ -2,12 +2,14 @@
 # -*- coding: utf-8 -*-
 """
 Mine Tools
-
 """
 
 import numpy as np
+import ray
+import scipy.io as spio
 import torch
 import torch.nn as nn
+from ray.experimental.tqdm_ray import tqdm
 
 
 def toColVector(x):
@@ -121,3 +123,57 @@ def mine_data_loader(X, Y, val_size=0.2, device="cuda"):
     Xval = Xval.to(device)
     Yval = Yval.to(device)
     return Xtrain, Ytrain, Xval, Yval, X, Y
+
+
+@ray.remote
+class Progress:
+    def __init__(self, max_it=1, pbar=True):
+        self.pbar_flag = pbar
+        self.pbar = tqdm(total=max_it)
+        self.count = -1
+        self.max_it = max_it
+        self.update()
+
+    def update(self):
+        if self.pbar_flag:
+            self.pbar.update()
+        else:
+            self.count += 1
+            p = 100 * self.count / self.max_it
+            print(f"Progress: {p:.2f}%  {self.count}/{self.max_it}")
+
+
+def loadmat(filename):
+    """
+    this function should be called instead of direct spio.loadmat
+    as it cures the problem of not properly recovering python dictionaries
+    from mat files. It calls the function check keys to cure all entries
+    which are still mat-objects
+    """
+    data = spio.loadmat(filename, struct_as_record=False, squeeze_me=True)
+    return _check_keys(data)
+
+
+def _check_keys(dict):
+    """
+    checks if entries in dictionary are mat-objects. If yes
+    todict is called to change them to nested dictionaries
+    """
+    for key in dict:
+        if isinstance(dict[key], spio.matlab.mio5_params.mat_struct):
+            dict[key] = _todict(dict[key])
+    return dict
+
+
+def _todict(matobj):
+    """
+    A recursive function which constructs from matobjects nested dictionaries
+    """
+    dict = {}
+    for strg in matobj._fieldnames:
+        elem = matobj.__dict__[strg]
+        if isinstance(elem, spio.matlab.mio5_params.mat_struct):
+            dict[strg] = _todict(elem)
+        else:
+            dict[strg] = elem
+    return dict

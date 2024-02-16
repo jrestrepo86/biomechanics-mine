@@ -1,8 +1,22 @@
-# Mutual Information Between Joint Angles and Toe Height in Healthy Subjects
+<p align="center">
+  <img src="Logo01.jpg" width=20% height="20%" >
+</p>
 
-#### biomechanics-mine
+<h1 align='center'>Mutual Information Between Joint Angles and Toe Height in Healthy Subjects</h1>
 
-Mutual information neural estimation (MINE) code used for the article:
+[![python](https://img.shields.io/badge/Python-3.8.10-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
+[![pytorch](https://img.shields.io/badge/PyTorch-2.0.1-EE4C2C.svg?style=flat&logo=pytorch)](https://pytorch.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+## biomechanics-mine: Mutual information neural estimation (MINE) code used for the article
+
+Understanding the relationship between the position of the foot and the lower limb joint angles
+during normal gait is critical for the identification of the mechanisms involved in pathological gait.
+In this article, we introduce a novel framework that characterizes this relationship using mutual information
+in healthy subjects. The nonlinear connection between these variables is quantified using mutual information,
+and the MINE algorithm is used for precise estimation.
+
+### Citation:
 
 ```
 @article{restrepo_mi_bomechanics2023,
@@ -14,7 +28,17 @@ Mutual information neural estimation (MINE) code used for the article:
 }
 ```
 
-## Install
+## Methodology Diagram:
+
+<p align="center">
+<img src="Metho_diagram.png" width=100% height=80% alt="" align=center />
+<br><br>
+<b>Figure 1.</b> Methodology Diagram to estimate mutual information between the toe height and the ipsilateral knee joint angle.
+</p>
+
+## Usage
+
+#### Install
 
 ```bash
 git clone https://github.com/jrestrepo86/biomechanics-mine.git
@@ -22,17 +46,18 @@ cd biomechanics-mine/
 pip install -e .
 ```
 
-## Uninstall
+#### Uninstall
 
 ```bash
 pip uninstall mine
 ```
 
-## Usage
+#### Examples:
 
-[A complete test of this module can be found here](testMine.py)
+- [A complete test of this module using Gaussian random variables](testMineGaussian.py)
+- [A complete test of this module using gait signals](testMineGait.py)
 
-### Usage example:
+##### Fast test for using Gaussian random variables:
 
 ```py
 import numpy as np
@@ -107,28 +132,28 @@ plt.show()
   pages={531--540},
   year={2018},
   organization={PMLR}
-}
+},
 @article{choi2020regularized,
   title={Regularized mutual information neural estimation},
   author={Choi, Kwanghee and Lee, Siyeong},
   year={2020}
-}
-@inproceedings{choi2022combating, 
+},
+@inproceedings{choi2022combating,
     title={Combating the instability of mutual information-based losses via regularization},
-    author={Choi, Kwanghee and Lee, Siyeong}, 
+    author={Choi, Kwanghee and Lee, Siyeong},
     booktitle={Uncertainty in Artificial Intelligence},
     pages={411--421},
     year={2022},
     organization={PMLR}
-}
+},
 @inproceedings{cristiani2020leakage,
   title={Leakage assessment through neural estimation of the mutual information},
   author={Cristiani, Valence and Lecomte, Maxime and Maurine, Philippe},
-  booktitle={Applied Cryptography and Network Security Workshops: ACNS 2020 Satellite Workshops, 
-            AIBlock, AIHWS, AIoTS, Cloud S\&P, SCI, SecMT, and SiMLA, Rome, 
+  booktitle={Applied Cryptography and Network Security Workshops: ACNS 2020 Satellite Workshops,
+            AIBlock, AIHWS, AIoTS, Cloud S\&P, SCI, SecMT, and SiMLA, Rome,
             Italy, October 19--22, 2020, Proceedings 18},
   pages={144--162},
   year={2020},
   organization={Springer}
-}
+},
 ```
