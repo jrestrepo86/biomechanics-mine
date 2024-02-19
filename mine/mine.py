@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Mine
-
 """
 
 import math
@@ -156,7 +155,6 @@ class Mine(nn.Module):
         verbose=False,
     ):
         opt = torch.optim.Adam(self.model.parameters(), lr=lr, betas=(0.9, 0.999))
-        # opt = torch.optim.SGD(self.model.parameters(), lr=lr)
 
         scheduler = ReduceLROnPlateau(
             opt, mode="max", factor=lr_factor, patience=lr_patience, verbose=verbose
@@ -175,7 +173,7 @@ class Mine(nn.Module):
         val_mi_epoch = []
         test_mi_epoch = []
 
-        for i in tqdm(range(max_epochs), disable=not verbose):
+        for _ in tqdm(range(max_epochs), disable=not verbose):
             # training
             rand_perm = torch.randperm(Xtrain.shape[0])
             if batch_size == "full":
@@ -198,7 +196,6 @@ class Mine(nn.Module):
                 val_ema_loss_epoch.append(val_ema_loss.item())
                 val_mi_epoch.append(val_mi.item())
                 # learning rate scheduler
-                # scheduler.step(val_loss)
                 scheduler.step(val_ema_loss)
                 # early stopping
                 early_stopping(val_ema_loss)

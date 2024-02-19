@@ -1,3 +1,17 @@
+"""
+Code example
+
+The code is designed to calculate the mutual information between the
+height of the right toe and both ipsilateral and contralateral knee
+joint angles.
+
+The signals for this analysis are taken from the Jonathan Camargo et al.
+database, specifically subject AB16 and the levelground_ccw_normal condition.
+
+The code will generate 10 mine instances for each signal pair and display
+a boxplot with the mutual information estimations.
+"""
+
 import time
 
 import numpy as np

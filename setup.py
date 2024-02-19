@@ -8,7 +8,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="mine",
-    version="0.1",
+    version="0.2",
     description="Mutual information neural estimation",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -21,7 +21,10 @@ setup(
     python_requires=">=3.6",
     install_requires=[
         "torch",
-        "torch_vision",
+        "ray",
+        "seaborn",
+        "pandas",
+        "scipy",
         "scikit_learn",
         "tqdm",
         "numpy",

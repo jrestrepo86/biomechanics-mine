@@ -8,6 +8,7 @@ except ImportError:
     from .mine.mine import Mine
 
 
+# plot function
 def plot(ax, Rho, teo_mi, mi, label):
     ax.plot(Rho, teo_mi, ".k", label="True")
     ax.plot(Rho, mi, "b", label=label)
@@ -16,13 +17,14 @@ def plot(ax, Rho, teo_mi, mi, label):
 
 
 def testMine():
-    # Net
+    # testing 3 different models
     loss1 = "mine_biased"
     loss2 = "mine"
     loss3 = "remine"
+    # Network parameters
     model_params = {"hidden_dim": 50, "num_hidden_layers": 3, "afn": "elu"}
 
-    N = 5000
+    N = 5000  # Series data length
     mu = np.array([0, 0])
     Rho = np.linspace(-0.99, 0.99, 21)
     mi_teo = np.zeros(*Rho.shape)
@@ -30,12 +32,10 @@ def testMine():
     mi_mine = np.zeros(*mi_teo.shape)
     mi_remine = np.zeros(*mi_teo.shape)
 
-    # Training
-    batch_size = "full"
-    max_epochs = 100000
+    # Training parameters
     train_params = {
-        "batch_size": batch_size,
-        "max_epochs": max_epochs,
+        "batch_size": "full",
+        "max_epochs": 10000,
         "val_size": 0.2,
         "lr": 1e-3,
         "lr_factor": 0.5,
@@ -63,12 +63,12 @@ def testMine():
             X, Y, loss=loss3, regWeight=0.1, targetVal=0, **model_params
         )
 
-        # Train models
+        # Training models
         model_biased.fit(**train_params)
         model_mine.fit(**train_params)
         model_remine.fit(**train_params)
 
-        # Get mi estimation
+        # Get mi estimations
         mi_mine_biased[i] = model_biased.get_mi()
         mi_mine[i] = model_mine.get_mi()
         mi_remine[i] = model_remine.get_mi()
