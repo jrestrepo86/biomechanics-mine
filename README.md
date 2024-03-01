@@ -4,8 +4,8 @@
 
 <h1 align='center'>Mutual Information Between Joint Angles and Toe Height in Healthy Subjects</h1>
 
-[![python](https://img.shields.io/badge/Python-3.8.10-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
-[![pytorch](https://img.shields.io/badge/PyTorch-2.0.1-EE4C2C.svg?style=flat&logo=pytorch)](https://pytorch.org)
+[![python](https://img.shields.io/badge/Python-3.10.12-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
+[![pytorch](https://img.shields.io/badge/PyTorch-2.1.2-EE4C2C.svg?style=flat&logo=pytorch)](https://pytorch.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ## biomechanics-mine: Mutual information neural estimation (MINE) code used for the article
@@ -16,15 +16,19 @@ In this article, we introduce a novel framework that characterizes this relation
 in healthy subjects. The nonlinear connection between these variables is quantified using mutual information,
 and the MINE algorithm is used for precise estimation.
 
+<b> [https://doi.org/10.1016/j.bspc.2024.106150](https://doi.org/10.1016/j.bspc.2024.106150)</b>
+
 ### Citation:
 
 ```
-@article{restrepo_mi_bomechanics2023,
-  title={Mutual Information Between Joint Angles and Toe Height in Healthy Subjects},
-  author={Juan F. Restrepo, Mauricio Riveras, Gastón Schlotthauer, Paola Catalfamo},
-  journal={},
-  pages={},
-  year={},
+@article{restrepo2024mutual,
+  title={Mutual information between joint angles and toe height in healthy subjects},
+  author={Restrepo, Juan F and Riveras, Mauricio and Schlotthauer, Gast{\'o}n and Catalfamo, Paola},
+  journal={Biomedical Signal Processing and Control},
+  volume={93},
+  pages={106150},
+  year={2024},
+  publisher={Elsevier}
 }
 ```
 
